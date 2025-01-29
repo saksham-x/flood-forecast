@@ -9,7 +9,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-const Chart = ({ data, title, yAxisDomain, lineKey, color }) => {
+const Chart = ({ data, title, yAxisDomain, lineKey, color, xAxisKey }) => {
   console.log("Data Passed to Chart:", data);
 
   return (
@@ -22,8 +22,12 @@ const Chart = ({ data, title, yAxisDomain, lineKey, color }) => {
         >
           <CartesianGrid strokeDasharray="auto" />
           <XAxis
-            dataKey="datetime"
-            tickFormatter={(tick) => tick.replace("T", " ").slice(0, 16)} // Show in "YYYY-MM-DD HH:mm" format
+            dataKey={xAxisKey}
+            tickFormatter={(tick) =>
+              tick
+                ? new Date(tick).toLocaleString("en-US", { hour12: false })
+                : ""
+            }
             type="category"
           />
           <YAxis domain={yAxisDomain} />

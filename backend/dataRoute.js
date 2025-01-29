@@ -4,11 +4,11 @@ const router = express.Router();
 
 router.get("/api/river-data", async (req, res) => {
   try {
-    const riverData = await ApiRiverData.find()
-      .select(
-        "datetime targetedDatetime suirenitar_by_trishuli targetedDatetime2 suirenitar_by_budigandaki suirenitar_discharge"
-      )
-      .sort("datetime");
+    const riverData = await ApiRiverData.find().sort("datetime");
+    // .select(
+    //   "datetime targetedDatetime suirenitar_by_trishuli targetedDatetime2 suirenitar_by_budigandaki suirenitar_discharge"
+    // )
+    // .sort("datetime");
 
     const total = await ApiRiverData.countDocuments();
 

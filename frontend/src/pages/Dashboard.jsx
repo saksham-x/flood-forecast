@@ -34,27 +34,62 @@ const Dashboard = () => {
   return (
     <div className="min-h-screen bg-gray-50 p-8">
       <h1 className="text-3xl font-bold text-center mb-8">River Dashboard</h1>
-      {/* Pass the respective data to each chart */}
-      <Chart
-        data={trishuliData}
-        title="Trishuli Discharge"
-        yAxisDomain={[45, 60]}
-        lineKey="suirenitar_by_trishuli"
-        color="#8884d8"
-      />
-      <Chart
-        data={budigandakiData}
-        title="Budigandaki Discharge"
-        yAxisDomain={[475, 480]}
-        lineKey="suirenitar_by_budigandaki"
-        color="#82ca9d"
-      />
+
+      {/* first chart  */}
+      <div className="bg-red-50 flex justify-between w-full h-96">
+        <div className="w-1/2 h-full">
+          <Chart
+            data={trishuliData}
+            title="galchi Discharge"
+            yAxisDomain={[45, 60]}
+            lineKey="trishuli_discharge"
+            color="#8884d8"
+            xAxisKey={"datetime"}
+          />
+        </div>
+        <div className="w-1/2 h-full">
+          <Chart
+            data={budigandakiData}
+            title="Khari Discharge"
+            yAxisDomain={[475, 480]}
+            lineKey="suirenitar_by_budigandaki"
+            color="#82ca9d"
+            xAxisKey={"datetime"}
+          />
+        </div>
+      </div>
+
+      {/* Second Chart */}
+      <div className="bg-gray-300 flex justify-between w-full h-96">
+        <div className="w-1/2 h-full">
+          <Chart
+            data={trishuliData}
+            title="Suirenitar by Galchi"
+            yAxisDomain={[45, 60]}
+            lineKey="suirenitar_by_trishuli"
+            xAxisKey="targetedDatetime" // Use targetedDatetime as X-axis
+            color="#8884d8"
+          />
+        </div>
+        <div className="w-1/2 h-full">
+          <Chart
+            data={budigandakiData}
+            title="Suirenitar by Budigandaki"
+            yAxisDomain={[475, 480]}
+            lineKey="suirenitar_by_budigandaki"
+            color="#82ca9d"
+            xAxisKey={"targetedDatetime2"}
+          />
+        </div>
+      </div>
+
       <Chart
         data={suirenitarData}
         title="Suirenitar Discharge"
         yAxisDomain={[515, 540]}
         lineKey="suirenitar_discharge"
         color="#8884d8"
+        xAxisKey={"targetedDatetime2"}
       />
     </div>
   );
