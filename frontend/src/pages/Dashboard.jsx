@@ -36,7 +36,7 @@ const Dashboard = () => {
       <h1 className="text-3xl font-bold text-center mb-8">River Dashboard</h1>
 
       {/* first chart  */}
-      <div className="bg-red-50 flex justify-between w-full h-96">
+      <div className="bg-gray-200 flex justify-between w-full h-96">
         <div className="w-1/2 h-full">
           <Chart
             data={trishuliData}
@@ -60,7 +60,7 @@ const Dashboard = () => {
       </div>
 
       {/* Second Chart */}
-      <div className="bg-gray-300 flex justify-between w-full h-96">
+      <div className="bg-gray-200 flex justify-between w-full h-96">
         <div className="w-1/2 h-full">
           <Chart
             data={trishuliData}
@@ -82,15 +82,16 @@ const Dashboard = () => {
           />
         </div>
       </div>
-
-      <Chart
-        data={suirenitarData}
-        title="Suirenitar Discharge"
-        yAxisDomain={[515, 540]}
-        lineKey="suirenitar_discharge"
-        color="#8884d8"
-        xAxisKey={"targetedDatetime2"}
-      />
+      <div className="bg-gray-200 shadow-md rounded-md p-5">
+        <Chart
+          data={suirenitarData}
+          title="Suirenitar Forecast"
+          yAxisDomain={[515, 540]}
+          lineKey="suirenitar_discharge"
+          color="#8884d8"
+          xAxisKey={"targetedDatetime2"}
+        />
+      </div>
     </div>
   );
 };

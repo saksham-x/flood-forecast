@@ -1,4 +1,4 @@
-const ApiRiverData = require("./dataModel");
+const { ApiRiverData, PastTrishuliData } = require("./dataModel");
 
 let pastTrishuliData = [];
 
@@ -28,12 +28,43 @@ const calculateTimeLag = (meanVelocity, distance) => {
   return meanVelocity ? distance / (meanVelocity * 60) : null;
 };
 
+const loadPastTrishuliData = async () => {
+  try {
+    const data = await PastTrishuliData.find();
+    pastTrishuliData = data.map((item) => ({
+      targetedDatetime: new Date(item.targetedDatetime),
+      suirenitar_by_trishuli: item.suirenitar_by_trishuli,
+    }));
+    console.log("Loaded pastTrishuliData from database.");
+  } catch (error) {
+    console.error("Error loading pastTrishuliData:", error);
+  }
+};
+
+const savePastTrishuliData = async (record) => {
+  try {
+    const existingRecord = await PastTrishuliData.findOne({
+      targetedDatetime: record.targetedDatetime,
+    });
+    if (!existingRecord) {
+      await PastTrishuliData.create(record);
+      console.log("Saved pastTrishuliData to database:", record);
+    } else {
+      console.log("Duplicate pastTrishuliData found. Skipping save.");
+    }
+  } catch (error) {
+    console.error("Error saving pastTrishuliData:", error);
+  }
+};
+
 const processData = async (filteredData) => {
   if (!filteredData || filteredData.length === 0) {
     console.error("No data provided to process.");
     return;
   }
-  console.log(filteredData);
+
+  await loadPastTrishuliData();
+
   const datetime = filteredData[0].waterLevel.datetime;
 
   let trisuliStage = null;
@@ -79,6 +110,9 @@ const processData = async (filteredData) => {
         suirenitar_by_trishuli = trishuli_discharge;
 
         pastTrishuliData.push({ targetedDatetime, suirenitar_by_trishuli });
+
+        // Save to PastTrishuliData
+        savePastTrishuliData({ targetedDatetime, suirenitar_by_trishuli });
       }
     } else if (item.id === 452) {
       budigandakiStage = item.waterLevel.value;

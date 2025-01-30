@@ -21,7 +21,16 @@ const dataSchema = new mongoose.Schema({
 
   suirenitar_discharge: Number,
 });
+const ApiRiverData =
+  mongoose.models.ApiRiverData || mongoose.model("ApiRiverData", dataSchema);
 
-const ApiRiverData = mongoose.model("ApiRiverData", dataSchema);
+const pastTrishuliSchema = new mongoose.Schema({
+  targetedDatetime: { type: Date, required: true },
+  suirenitar_by_trishuli: { type: Number, required: true },
+});
 
-module.exports = ApiRiverData;
+const PastTrishuliData =
+  mongoose.models.PastTrishuliData ||
+  mongoose.model("PastTrishuliData", pastTrishuliSchema);
+
+module.exports = { ApiRiverData, PastTrishuliData };

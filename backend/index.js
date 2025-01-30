@@ -20,6 +20,7 @@ const startApp = async () => {
     app.use(
       cors({
         origin: "http://192.168.4.184:5173",
+        // origin: "http://localhost:5173",
       })
     );
     app.use(dataRoutes);

@@ -14,7 +14,7 @@ const Chart = ({ data, title, yAxisDomain, lineKey, color, xAxisKey }) => {
 
   return (
     <div className="stacked-charts">
-      <h2 className="bg-fuchsia-50 mt-10 text-center mb-10">{title}</h2>
+      <h2 className="bg-gray-100 mt-10 text-center p-2 mb-10">{title}</h2>
       <ResponsiveContainer width="100%" height={200}>
         <LineChart
           data={data}

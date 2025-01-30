@@ -1,5 +1,5 @@
 const express = require("express");
-const ApiRiverData = require("./dataModel");
+const { ApiRiverData } = require("./dataModel");
 const router = express.Router();
 
 router.get("/api/river-data", async (req, res) => {
