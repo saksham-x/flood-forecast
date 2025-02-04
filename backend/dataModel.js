@@ -33,4 +33,17 @@ const PastTrishuliData =
   mongoose.models.PastTrishuliData ||
   mongoose.model("PastTrishuliData", pastTrishuliSchema);
 
-module.exports = { ApiRiverData, PastTrishuliData };
+const constantsSchema = new mongoose.Schema({
+  name: { type: String, required: true, unique: true },
+  threshold: { type: Number, required: true },
+  multiplier: { type: Number, required: true },
+  exponent: { type: Number, required: true },
+  velocityFactor: { type: Number, required: true },
+  velocityOffset: { type: Number, required: true },
+  distance: { type: Number, required: true },
+});
+const RiverConstants =
+  mongoose.models.RiverConstants ||
+  mongoose.model("RiverConstants", constantsSchema);
+
+module.exports = { ApiRiverData, PastTrishuliData, RiverConstants };

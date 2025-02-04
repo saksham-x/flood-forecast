@@ -19,10 +19,11 @@ const startApp = async () => {
 
     app.use(
       cors({
-        origin: "http://192.168.4.184:5173",
+        origin: "http://192.168.4.191:5173", // for the ethernet cable
         // origin: "http://localhost:5173",
       })
     );
+    app.use(express.json());
     app.use(dataRoutes);
     app.listen(PORT, () => {
       console.log(`Server is running at http://localhost:${PORT}`);
@@ -42,6 +43,7 @@ const startApp = async () => {
         const filteredData = data.filter((item) =>
           [451, 452].includes(item.id)
         );
+        console.log(filteredData);
         processData(filteredData);
       });
 

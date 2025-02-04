@@ -25,7 +25,7 @@ const Chart = ({ data, title, yAxisDomain, lineKey, color, xAxisKey }) => {
             dataKey={xAxisKey}
             tickFormatter={(tick) =>
               tick
-                ? new Date(tick).toLocaleString("en-US", { hour12: false })
+                ? new Date(tick).toLocaleString("en-US", { hour12: true })
                 : ""
             }
             type="category"

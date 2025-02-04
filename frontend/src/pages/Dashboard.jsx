@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Chart from "../components/Chart";
 import { fetchRiverData } from "../services/Api";
+import RiverConstantForm from "../components/RiverConstantForm";
 
 const Dashboard = () => {
   const [trishuliData, setTrishuliData] = useState([]);
@@ -34,6 +35,9 @@ const Dashboard = () => {
   return (
     <div className="min-h-screen bg-gray-50 p-8">
       <h1 className="text-3xl font-bold text-center mb-8">River Dashboard</h1>
+      <div>
+        <RiverConstantForm />
+      </div>
 
       {/* first chart  */}
       <div className="bg-gray-200 flex justify-between w-full h-96">
